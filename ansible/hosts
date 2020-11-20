@@ -1,0 +1,5 @@
+[dev]
+172.31.30.157 ansible_user="ec2-user"
+
+[Build]
+172.31.25.31 ansible_user="ec2-user"
