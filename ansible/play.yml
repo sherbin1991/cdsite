@@ -5,9 +5,9 @@
   vars_files:
     - docker.vars
   vars:
-    repo_url: "https://github.com/sherbin1991/cdsite.git"
+    repo_url: "https://github.com/FujiClado/cicd-jenkins.git"
     repo_dest: "/var/repository/"
-    image_name: "sherbin1991/cdsite"
+    image_name: "fujikomalan/cdsite"
   tasks:
     
     - name: "Build-Setp - Docker Installation"
@@ -41,7 +41,7 @@
 
     - name: "Build-Setp - Login to remote Repository"
       docker_login:
-        username: sherbin1991
+        username: fujikomalan
         password: "{{ docker_password }}"
 
             
@@ -77,7 +77,7 @@
   hosts: dev
   become: true
   vars:
-    image_name: "sherbin1991/cdsite"
+    image_name: "fujikomalan/cdsite"
     
   tasks:
     
@@ -103,12 +103,11 @@
         state: restarted
         enabled: true
 
-- name: "Deployment - Run Container"
+    - name: "Deployment - Run Container"
       docker_container:
         name: webserver
         image: "{{ image_name }}:latest"
         recreate: yes
         pull: yes
         published_ports:
-          - "80:80"
-
+- "80:80"
